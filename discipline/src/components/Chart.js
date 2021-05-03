@@ -1,7 +1,7 @@
 import { Chart } from 'react-charts'
 import React from 'react'
 
-function MyChart() {
+const MyChart = () => {
     const data = React.useMemo(
         () => [
             {
