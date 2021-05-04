@@ -1,5 +1,5 @@
 import './Habits.css'
-import Habit from './Habit'
+import HabitList from './HabitList'
 import Filter from './Filter'
 import React, { useState } from 'react'
 
@@ -22,10 +22,12 @@ const Habits = (props) => {
         setYearChosen(yearChosen);
         console.log("date selected:" + yearChosen)
     }
+
+
     return (
         <div>
             <Filter setDate={reactOnSelectedDate} />
-            {filteredItems.map(habit => <Habit key={habit.id} date={habit.date} title={habit.title} details={habit.details} progress={habit.progress} />)}
+            <HabitList items={filteredItems} />
         </div>
     );
 }

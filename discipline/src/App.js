@@ -14,6 +14,8 @@ const App = () => {
   const onNewItemHandler = habit => {
     setHabits((previousHabits) => { return [habit, ...previousHabits] });
   }
+
+
   return (
     <div className="App">
       <NewHabit onNewItem={onNewItemHandler} />
