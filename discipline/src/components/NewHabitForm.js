@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 
 const NewHabitForm = (props) => {
 
-    const [enteredTitle, setEnteredTitle] = useState();
-    const [enteredProgress, setEnteredProgress] = useState();
-    const [enteredDate, setEnteredDate] = useState();
+    const [enteredTitle, setEnteredTitle] = useState('');
+    const [enteredProgress, setEnteredProgress] = useState(0);
+    const [enteredDate, setEnteredDate] = useState(new Date('1/1/1973'));
 
     const titleChangeHandler = (event) => {
         setEnteredTitle(event.target.value);
@@ -24,10 +24,10 @@ const NewHabitForm = (props) => {
         const habitData = {
             title: enteredTitle,
             progress: enteredProgress,
-            date: enteredDate
+            date: new Date(enteredDate)
         }
         props.onSaveMyItem(habitData);
-
+        console.log('date:' + habitData.date)
         setEnteredTitle('');
         setEnteredProgress('');
         setEnteredDate('');
