@@ -1,0 +1,17 @@
+.chart-bar-filling{
+    background:black;
+    
+}
+.chart-bar-inside{
+    height:110px;
+   
+}
+.chart-bar{
+    height:100px;
+    float:left;
+    width:50px;
+}
+
+.chart-container{
+    height: 120px;
+}

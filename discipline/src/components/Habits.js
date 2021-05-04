@@ -2,6 +2,7 @@ import './Habits.css'
 import HabitList from './HabitList'
 import Filter from './Filter'
 import React, { useState } from 'react'
+import HabitChart from './HabitChart'
 
 const Habits = (props) => {
 
@@ -26,6 +27,7 @@ const Habits = (props) => {
 
     return (
         <div>
+            <HabitChart habits={filteredItems} />
             <Filter setDate={reactOnSelectedDate} />
             <HabitList items={filteredItems} />
         </div>

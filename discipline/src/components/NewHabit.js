@@ -14,11 +14,11 @@ const NewHabit = (props) => {
     const [habitDisplay, setHabitDisplay] = useState(false);
 
     const showForm = () => {
-        setHabitDisplay(true)
+        setHabitDisplay(true);
     }
 
     const hideForm = () => {
-        setHabitDisplay(false)
+        setHabitDisplay(false);
     }
 
     return (<div>
