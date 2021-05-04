@@ -4,7 +4,7 @@ const NewHabitForm = (props) => {
 
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredProgress, setEnteredProgress] = useState(0);
-    const [enteredDate, setEnteredDate] = useState(new Date('1/1/1973'));
+    const [enteredDate, setEnteredDate] = useState(new Date(1973, 1, 1));
 
     const titleChangeHandler = (event) => {
         setEnteredTitle(event.target.value);
@@ -27,7 +27,6 @@ const NewHabitForm = (props) => {
             date: new Date(enteredDate)
         }
         props.onSaveMyItem(habitData);
-        console.log('date:' + habitData.date)
         setEnteredTitle('');
         setEnteredProgress('');
         setEnteredDate('');
