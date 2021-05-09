@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './NewHabitForm.css'
-import Button from './Button'
+import SuperButton from './SuperButton'
 
 const NewHabitForm = (props) => {
 
@@ -44,7 +44,7 @@ const NewHabitForm = (props) => {
 
     return (
         <form onSubmit={submitHandler}>
-            <div className={`form ${!isValid ? 'invalid' : ''}`} >
+            <div className={`form ${!isValid && 'invalid'}`} >
                 <label >Title</label>
                 <input type="text" value={enteredTitle} onChange={titleChangeHandler} />
                 <label>Progress</label>
@@ -53,11 +53,12 @@ const NewHabitForm = (props) => {
                 <input type="date" value={enteredDate} onChange={dateChangeHandler} />
             </div>
             <div>
+                <SuperButton type="submit" invalid={!isValid}>Add New Habit</SuperButton>
 
-                <Button type="submit">Add New Habit</Button>
             </div>
         </form>
     )
 }
 
+//
 export default NewHabitForm
