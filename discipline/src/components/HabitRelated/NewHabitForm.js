@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './NewHabitForm.css'
-import SuperButton from './SuperButton'
+import SuperButton from '../Buttons/SuperButton'
 
 const NewHabitForm = (props) => {
 

@@ -1,6 +1,6 @@
 import './Habits.css'
 import HabitList from './HabitList'
-import Filter from './Filter'
+import Filter from '../Filters/Filter'
 import React, { useState } from 'react'
 import HabitChart from './HabitChart'
 
@@ -26,11 +26,11 @@ const Habits = (props) => {
 
 
     return (
-        <div>
+        <React.Fragment>
             <HabitChart habits={filteredItems} />
             <Filter setDate={reactOnSelectedDate} />
             <HabitList items={filteredItems} />
-        </div>
+        </React.Fragment>
     );
 }
 

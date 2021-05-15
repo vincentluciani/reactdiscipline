@@ -21,11 +21,11 @@ const NewHabit = (props) => {
         setHabitDisplay(false);
     }
 
-    return (<div>
+    return (<React.Fragment>
         { habitDisplay && < NewHabitForm onSaveMyItem={onSaveMyItemHandler} />}
         { habitDisplay && <div onClick={hideForm}>Cancel</div>}
         { !habitDisplay && <div onClick={showForm}>New Item</div>}
-    </div>
+    </React.Fragment>
     );
 }
 

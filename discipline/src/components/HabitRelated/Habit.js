@@ -1,9 +1,9 @@
 import './Habit.css'
-import Date from './Date.js'
+import Date from '../DateRelated/Date.js'
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import Box from './Box.js'
-import React, { useState } from 'react'
+import Box from '../Wrappers/Box.js'
+import React from 'react'
 
 const Habit = (props) => {
 

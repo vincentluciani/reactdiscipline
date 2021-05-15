@@ -1,4 +1,4 @@
-import BarChart from './BarChart'
+import BarChart from '../Charts/BarChart'
 
 const HabitChart = props => {
     const chartDataPoints = [

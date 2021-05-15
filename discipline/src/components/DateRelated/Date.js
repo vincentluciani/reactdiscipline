@@ -1,5 +1,5 @@
 import './Date.css'
-
+import React from 'react'
 const Date = (props) => {
 
     const year = props.date.getFullYear();
@@ -7,11 +7,11 @@ const Date = (props) => {
     const day = props.date.toLocaleString('en-US', { day: '2-digit' });
 
     return (
-        <div>
+        <React.Fragment>
             <div>{year}</div>
             <div>{month}</div>
             <div>{day}</div>
-        </div>
+        </React.Fragment>
     );
 }
 

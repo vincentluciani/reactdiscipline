@@ -1,7 +1,7 @@
 import './App.css';
-import NewHabit from './components/NewHabit';
-import MyChart from './components/Chart'
-import Habits from './components/Habits'
+import NewHabit from './components/HabitRelated/NewHabit';
+import MyChart from './components/Charts/Chart'
+import Habits from './components/HabitRelated/Habits'
 import React, { useState } from 'react'
 
 const habits_data = [{ 'id': 1, 'date': new Date(2021, 4, 30), 'title': 'sleep well', 'progress': 66 },
