@@ -29,9 +29,11 @@ const NewHabitForm = (props) => {
         event.preventDefault(); // To prevent the page to reload
 
         const habitData = {
-            title: enteredTitle,
-            progress: 0,
-            date: new Date()
+            "title": enteredTitle,
+            "schedule": schedule,
+            "date": new Date(),
+            "dailyOccurence": dailyOccurence,
+            "progress": 0
         }
 
         if (enteredTitle.trim().length === 0) {
@@ -41,7 +43,7 @@ const NewHabitForm = (props) => {
         props.onSaveMyItem(habitData);
         setEnteredTitle('');
         setIsValid(true);
-
+        setSchedule({});
     }
 
     let className = 'form';
@@ -56,7 +58,7 @@ const NewHabitForm = (props) => {
                 <input id="title" type="text" value={enteredTitle} onChange={titleChangeHandler} />
                 <br /><br />
                 <label htmlFor="dailyOccurence">Daily Occurences ( target ) :</label><br />
-                <input id="dailyOccurence" type="number" value={0} min={0} step={1} max={100} onChange={dailyOccurenceChangeHandler} />
+                <input id="dailyOccurence" type="number" min={0} step={1} max={100} onChange={dailyOccurenceChangeHandler} />
                 <br /><br />
                 <label>Schedule :</label><br />
                 <WeekDayPicker onSchedule={scheduleChangeHandler}></WeekDayPicker>

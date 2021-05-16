@@ -25,7 +25,7 @@ const NewHabit = (props) => {
     }
 
     return (<React.Fragment>
-        { habitDisplay && <Box>< NewHabitForm onSaveMyItem={onSaveMyItemHandler} /> <div onClick={hideForm}>Cancel</div></Box>}
+        { habitDisplay && <Box>< NewHabitForm onSaveMyItem={onSaveMyItemHandler} /> <div onClick={hideForm}>Hide</div></Box>}
 
         { !habitDisplay &&
             <Box onClick={showForm}><h2>New Item</h2><IconContext.Provider value={{ color: "#3e98c7", "size": "6em" }}><div> <BsFillPlusCircleFill /></div></IconContext.Provider></Box>}

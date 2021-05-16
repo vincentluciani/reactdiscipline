@@ -13,12 +13,28 @@ const Habit = (props) => {
     //     setTitle('updated');
     // }
     // <Date date={props.date} />
+    let scheduleDisplay;
+    if (props.schedule) {
+        let listOfDays = [];
+        for (let key in props.schedule) {
+            listOfDays.push(key);
+        }
+        scheduleDisplay = listOfDays.map((key) => <li>{key}</li>);
+    }
     return (<Box className={styles['habit']}>
         <div>
             <h2>{props.title}</h2>
         </div>
         <div style={{ width: 100, height: 100 }}>
             <CircularProgressbar value={props.progress} text={`${props.progress}%`} />
+        </div>
+        <div>
+            <br />Schedule :<br />
+            <ul className={styles['elementList']}>{scheduleDisplay}</ul>
+        </div>
+        <div>
+            Daily Occurence (target) :<br />
+            {props.dailyOccurence}
         </div>
     </Box >);
 }
