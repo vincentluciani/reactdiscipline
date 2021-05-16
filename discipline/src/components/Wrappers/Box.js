@@ -1,9 +1,9 @@
-import './Box.css'
+import styles from './Box.module.css'
 
 function Box(props) {
-    const classes = 'mycommonclass ' + props.className;
+    const classes = styles['mycommonclass'] + ' ' + props.className;
     return (
-        <div className={classes}>{props.children}</div>
+        <div className={classes} onClick={props.onClick}>{props.children}</div>
     );
 }
 

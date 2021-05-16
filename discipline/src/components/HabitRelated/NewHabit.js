@@ -1,5 +1,8 @@
 import NewHabitForm from './NewHabitForm'
 import React, { useState } from 'react'
+import Box from '../Wrappers/Box'
+import { BsFillPlusCircleFill } from 'react-icons/bs';
+import { IconContext } from "react-icons";
 
 const NewHabit = (props) => {
 
@@ -24,7 +27,8 @@ const NewHabit = (props) => {
     return (<React.Fragment>
         { habitDisplay && < NewHabitForm onSaveMyItem={onSaveMyItemHandler} />}
         { habitDisplay && <div onClick={hideForm}>Cancel</div>}
-        { !habitDisplay && <div onClick={showForm}>New Item</div>}
+        { !habitDisplay &&
+            <Box onClick={showForm}><h2>New Item</h2><IconContext.Provider value={{ color: "#3e98c7", "size": "6em" }}><div> <BsFillPlusCircleFill /></div></IconContext.Provider></Box>}
     </React.Fragment>
     );
 }

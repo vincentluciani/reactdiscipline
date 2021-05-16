@@ -9,7 +9,6 @@ const Habits = (props) => {
     return (
         <React.Fragment>
 
-
             <HabitList items={props.habits} />
 
         </React.Fragment>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './NewHabitForm.css'
+import styles from './NewHabitForm.module.css'
 import SuperButton from '../Buttons/SuperButton'
 import Box from '../Wrappers/Box'
 
@@ -43,10 +43,15 @@ const NewHabitForm = (props) => {
 
     }
 
+    let className = 'form';
+    if (!isValid) {
+        className += ' invalid';
+    }
+
     return (
         <Box>
             <form onSubmit={submitHandler}>
-                <div className={`form ${!isValid && 'invalid'}`} >
+                <div className={styles[className]} >
                     <label htmlFor="title">Title</label>
                     <input id="title" type="text" value={enteredTitle} onChange={titleChangeHandler} />
                     <label htmlFor="progress">Progress</label>

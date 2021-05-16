@@ -1,4 +1,4 @@
-import './BarChartBar.css'
+import styles from './BarChartBar.module.css'
 
 const BarChartBar = props => {
     let barFillingHeight = '0%';
@@ -7,13 +7,13 @@ const BarChartBar = props => {
         barFillingHeight = Math.round(100 * props.value / props.maxValue);
     }
     return (
-        <div className="chart-bar">
-            <div className="chart-bar-inside">
-                <div className="chart-bar-filling" style={{ height: barFillingHeight }}>
+        <div className={styles['chart-bar']}>
+            <div className="styles['chart-bar-inside']">
+                <div className="styles['chart-bar-filling']" style={{ height: barFillingHeight }}>
 
                 </div>
             </div>
-            <div className="chart-bar-label">{props.label}
+            <div className="styles['chart-bar-label']">{props.label}
             </div>
         </div>)
 }

@@ -1,11 +1,12 @@
 import BarChartBar from './BarChartBar'
+import styles from './BarChartBar.module.css'
 
 const BarChart = props => {
     const valueArray = props.dataPoints.map(dataPoint => dataPoint.value);
     const totalMaximum = Math.max(...valueArray);
 
     return (
-        <div className="chart-container">
+        <div className={styles["chart-container"]}>
             {
                 props.dataPoints.map(
                     dataPoint =>
