@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './NewHabitForm.css'
 import SuperButton from '../Buttons/SuperButton'
+import Box from '../Wrappers/Box'
 
 const NewHabitForm = (props) => {
 
@@ -43,20 +44,22 @@ const NewHabitForm = (props) => {
     }
 
     return (
-        <form onSubmit={submitHandler}>
-            <div className={`form ${!isValid && 'invalid'}`} >
-                <label >Title</label>
-                <input type="text" value={enteredTitle} onChange={titleChangeHandler} />
-                <label>Progress</label>
-                <input type="number" value={enteredProgress} min={0} step={1} max={100} onChange={progressChangeHandler} />
-                <label>Date</label>
-                <input type="date" value={enteredDate} onChange={dateChangeHandler} />
-            </div>
-            <div>
-                <SuperButton type="submit" invalid={!isValid}>Add New Habit</SuperButton>
+        <Box>
+            <form onSubmit={submitHandler}>
+                <div className={`form ${!isValid && 'invalid'}`} >
+                    <label htmlFor="title">Title</label>
+                    <input id="title" type="text" value={enteredTitle} onChange={titleChangeHandler} />
+                    <label htmlFor="progress">Progress</label>
+                    <input id="progress" type="number" value={enteredProgress} min={0} step={1} max={100} onChange={progressChangeHandler} />
+                    <label htmlFor="date">Date</label>
+                    <input id="date" type="date" value={enteredDate} onChange={dateChangeHandler} />
+                </div>
+                <div>
+                    <SuperButton type="submit" invalid={!isValid}>Add New Habit</SuperButton>
 
-            </div>
-        </form>
+                </div>
+            </form>
+        </Box>
     )
 }
 

@@ -1,0 +1,9 @@
+.main-page{
+    background: #fdf8f8;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    -webkit-justify-content: space-around;
+    -moz-justify-content: space-around;
+    flex-wrap: wrap;
+}

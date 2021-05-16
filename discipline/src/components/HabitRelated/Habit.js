@@ -12,9 +12,8 @@ const Habit = (props) => {
     // const clickHandler = () => {
     //     setTitle('updated');
     // }
-
+    // <Date date={props.date} />
     return (<Box className="habit">
-        <Date date={props.date} />
         <div>
             <h2>{props.title}</h2>
         </div>
