@@ -1,6 +1,14 @@
 .button {
-    background: aqua;
+    background: rgb(62, 152, 199);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 17px;
+    margin: 15px;
+    font-size: 17px;
+    cursor: pointer;
 }
+
 .button.invalid {
-    background: red;
+    background: #e23030;
 }

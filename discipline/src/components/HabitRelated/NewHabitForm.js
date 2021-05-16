@@ -1,25 +1,15 @@
 import React, { useState } from 'react'
 import styles from './NewHabitForm.module.css'
 import SuperButton from '../Buttons/SuperButton'
-import Box from '../Wrappers/Box'
+import WeekDayPicker from '../DateRelated/WeekDayPicker'
 
 const NewHabitForm = (props) => {
 
     const [enteredTitle, setEnteredTitle] = useState('');
-    const [enteredProgress, setEnteredProgress] = useState(0);
-    const [enteredDate, setEnteredDate] = useState(new Date(1973, 1, 1));
     const [isValid, setIsValid] = useState(true);
 
     const titleChangeHandler = (event) => {
         setEnteredTitle(event.target.value);
-    }
-
-    const progressChangeHandler = (event) => {
-        setEnteredProgress(event.target.value);
-    }
-
-    const dateChangeHandler = (event) => {
-        setEnteredDate(event.target.value);
     }
 
     const submitHandler = (event) => {
@@ -27,8 +17,8 @@ const NewHabitForm = (props) => {
 
         const habitData = {
             title: enteredTitle,
-            progress: +enteredProgress,
-            date: new Date(enteredDate)
+            progress: 0,
+            date: new Date()
         }
 
         if (enteredTitle.trim().length === 0) {
@@ -37,8 +27,6 @@ const NewHabitForm = (props) => {
         }
         props.onSaveMyItem(habitData);
         setEnteredTitle('');
-        setEnteredProgress('');
-        setEnteredDate('');
         setIsValid(true);
 
     }
@@ -49,24 +37,22 @@ const NewHabitForm = (props) => {
     }
 
     return (
-        <Box>
-            <form onSubmit={submitHandler}>
-                <div className={styles[className]} >
-                    <label htmlFor="title">Title</label>
-                    <input id="title" type="text" value={enteredTitle} onChange={titleChangeHandler} />
-                    <label htmlFor="progress">Progress</label>
-                    <input id="progress" type="number" value={enteredProgress} min={0} step={1} max={100} onChange={progressChangeHandler} />
-                    <label htmlFor="date">Date</label>
-                    <input id="date" type="date" value={enteredDate} onChange={dateChangeHandler} />
-                </div>
-                <div>
-                    <SuperButton type="submit" invalid={!isValid}>Add New Habit</SuperButton>
+        <form onSubmit={submitHandler}>
+            <div className={styles[className]} >
+                <label htmlFor="title">Title :</label><br />
+                <input id="title" type="text" value={enteredTitle} onChange={titleChangeHandler} />
+                <br /><br />
+                <WeekDayPicker></WeekDayPicker>
+            </div>
+            <div>
+                <SuperButton type="submit" invalid={!isValid}>Add New Habit</SuperButton>
 
-                </div>
-            </form>
-        </Box>
+            </div>
+        </form>
     )
 }
 
-//
+// <label htmlFor="date">Date</label>
+//                 <input id="date" type="date" value={enteredDate} onChange={dateChangeHandler} />
+// <input id="progress" type="number" value={enteredProgress} min={0} step={1} max={100} onChange={progressChangeHandler} />
 export default NewHabitForm
