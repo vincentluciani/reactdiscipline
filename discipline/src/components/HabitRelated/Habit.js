@@ -38,7 +38,7 @@ const Habit = (props) => {
     }
     return (
         <React.Fragment>
-            { isModalVisible && <ModalWindow onConfirm={hideEditModal}>hello</ModalWindow>}
+            { isModalVisible && <ModalWindow onConfirm={hideEditModal}><NewHabitForm editMode={true} habit={props.habit} /></ModalWindow>}
             <Box className={styles['habit']} onClick={editHabit}>
                 <div>
                     <h2>{props.title}</h2>

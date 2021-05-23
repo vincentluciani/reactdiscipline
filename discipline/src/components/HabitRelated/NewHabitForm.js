@@ -5,10 +5,26 @@ import WeekDayPicker from '../DateRelated/WeekDayPicker'
 
 const NewHabitForm = (props) => {
 
-    const [enteredTitle, setEnteredTitle] = useState('');
+    let initialTitle = '';
+    let intialSchedule = {};
+    let initialDate = new Date();
+    let initialDailyOccurence = 1;
+    let initialProgress = 0;
+
+    if (props.editMode === true && props.habit) {
+        initialTitle = props.habit.title;
+        intialSchedule = props.habit.schedule;
+        initialDate = props.habit.date;
+        initialDailyOccurence = props.habit.dailyOccurence;
+        initialProgress = props.habit.progress;
+    }
+
+    const [enteredTitle, setEnteredTitle] = useState(initialTitle);
     const [isValid, setIsValid] = useState(true);
-    const [schedule, setSchedule] = useState({});
-    const [dailyOccurence, setDailyOccurence] = useState(1);
+    const [schedule, setSchedule] = useState(intialSchedule);
+    const [dailyOccurence, setDailyOccurence] = useState(initialDailyOccurence);
+    const [date, setDate] = useState(initialDate);
+    const [progress, setProgress] = useState(initialProgress);
 
     const titleChangeHandler = (event) => {
         setEnteredTitle(event.target.value);
@@ -25,15 +41,16 @@ const NewHabitForm = (props) => {
         }
     }
 
+
     const submitHandler = (event) => {
         event.preventDefault(); // To prevent the page to reload
 
         const habitData = {
             "title": enteredTitle,
             "schedule": schedule,
-            "date": new Date(),
+            "date": date,
             "dailyOccurence": dailyOccurence,
-            "progress": 0
+            "progress": progress
         }
 
         if (enteredTitle.trim().length === 0) {
@@ -64,7 +81,7 @@ const NewHabitForm = (props) => {
                 <WeekDayPicker onSchedule={scheduleChangeHandler}></WeekDayPicker>
             </div>
             <div>
-                <SuperButton type="submit" invalid={!isValid}>Add New Habit</SuperButton>
+                <SuperButton type="submit" invalid={!isValid}>Submit</SuperButton>
             </div>
         </form>
     )
