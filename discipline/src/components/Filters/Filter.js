@@ -1,19 +1,14 @@
 import React from 'react'
+import HorizontalBar from '../Wrappers/HorizontalBar'
 
 const Filter = (props) => {
     const filterChangeHandler = event => {
-        console.log("message from filter component: value selected is:" + event.target.value)
-        props.setDate(event.target.value);
+        props.setFilterText(event.target.value);
     }
     return (
-        <React.Fragment><div>Year</div>
-            <select onChange={filterChangeHandler}>
-                <option value=""></option>
-                <option value="2021">2021</option>
-                <option value="2020">2020</option>
-                <option value="2019">2019</option>
-            </select>
-        </React.Fragment>
+        <HorizontalBar>
+            <label htmlFor="filter">Filter : </label><input id="filter" type="text" onChange={filterChangeHandler} />
+        </HorizontalBar>
     );
 }
 

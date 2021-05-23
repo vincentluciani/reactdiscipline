@@ -8,7 +8,7 @@ const NewHabitForm = (props) => {
     const [enteredTitle, setEnteredTitle] = useState('');
     const [isValid, setIsValid] = useState(true);
     const [schedule, setSchedule] = useState({});
-    const [dailyOccurence, setDailyOccurence] = useState(0);
+    const [dailyOccurence, setDailyOccurence] = useState(1);
 
     const titleChangeHandler = (event) => {
         setEnteredTitle(event.target.value);
@@ -58,14 +58,13 @@ const NewHabitForm = (props) => {
                 <input id="title" type="text" value={enteredTitle} onChange={titleChangeHandler} />
                 <br /><br />
                 <label htmlFor="dailyOccurence">Daily Occurences ( target ) :</label><br />
-                <input id="dailyOccurence" type="number" min={0} step={1} max={100} onChange={dailyOccurenceChangeHandler} />
+                <input id="dailyOccurence" type="number" value={dailyOccurence} min={1} step={1} max={100} onChange={dailyOccurenceChangeHandler} />
                 <br /><br />
                 <label>Schedule :</label><br />
                 <WeekDayPicker onSchedule={scheduleChangeHandler}></WeekDayPicker>
             </div>
             <div>
                 <SuperButton type="submit" invalid={!isValid}>Add New Habit</SuperButton>
-
             </div>
         </form>
     )

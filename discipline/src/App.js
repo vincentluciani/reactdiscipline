@@ -7,6 +7,7 @@ import HabitChart from './components/HabitRelated/HabitChart'
 import Filter from './components/Filters/Filter'
 import MainPage from './components/Wrappers/MainPage'
 
+
 const habits_data = [{ 'id': 1, 'date': new Date(2021, 4, 30), 'title': 'sleep well', 'progress': 66 },
 { 'id': 2, 'date': new Date(2020, 4, 28), 'title': 'eat well', 'progress': 10 }];
 
@@ -18,17 +19,17 @@ const App = () => {
     setHabits((previousHabits) => { return [habit, ...previousHabits] });
   }
 
-  const reactOnSelectedDate = yearChosen => {
-    setYearChosen(yearChosen);
-    console.log("date selected:" + yearChosen)
+  const reactOnSelectedFilter = textChosen => {
+    setFilterText(textChosen);
+    console.log("filter chosen:" + textChosen)
   }
 
-  const [displayYear, setYearChosen] = useState('')
+  const [filterText, setFilterText] = useState('')
 
   const filteredItems = habits.filter(
     habit => {
-      if (displayYear.length > 0) {
-        return habit.date.getFullYear().toString() === displayYear
+      if (filterText.length > 0) {
+        return (habit.title.indexOf(filterText) >= 0)
       }
       else {
         return true;
@@ -38,7 +39,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Filter setDate={reactOnSelectedDate} />
+      <Filter setFilterText={reactOnSelectedFilter} />
       <MainPage>
         <NewHabit onNewItem={onNewItemHandler} />
         <Habits habits={filteredItems} />
