@@ -4,15 +4,14 @@ import styles from './ModalWindow.module.css'
 
 const ModalWindow = props => {
 
-    const hideHandler = () => {
-        props.setVisible(false);
+    const onHide = () => {
+        props.onConfirm();
     }
-
     return (
-        <div className={styles['modal-window']}>
+        <div onClick={onHide} className={styles['modal-window']}>
             <Box className={`${styles['modal-content']} ${props.className}`}>
                 {props.children}
-                <SuperButton onClick={hideHandler}>Close</SuperButton>
+                <SuperButton onClick={onHide}>Close</SuperButton>
             </Box>
 
         </div>

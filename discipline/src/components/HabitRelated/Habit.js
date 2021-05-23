@@ -7,7 +7,7 @@ import React, { useState } from 'react'
 import styles from './Habit.module.css'
 import ModalWindow from '../Wrappers/ModalWindow';
 import NewHabitForm from '../HabitRelated/NewHabitForm';
-
+import SuperButton from '../Buttons/SuperButton'
 
 const Habit = (props) => {
 
@@ -24,8 +24,8 @@ const Habit = (props) => {
         setIsModalVisible(true);
     }
 
-    const hideEditModal = visibility => {
-        setIsModalVisible(visibility);
+    const hideEditModal = () => {
+        setIsModalVisible(null);
     }
 
     let scheduleDisplay;
@@ -36,23 +36,28 @@ const Habit = (props) => {
         }
         scheduleDisplay = listOfDays.map((key) => <li>{key}</li>);
     }
-    return (<Box className={styles['habit']} onClick={editHabit}>
-        {isModalVisible && <ModalWindow setVisible={hideEditModal}><NewHabitForm /></ModalWindow>}
-        <div>
-            <h2>{props.title}</h2>
-        </div>
-        <div style={{ width: 100, height: 100 }}>
-            <CircularProgressbar value={props.progress} text={`${props.progress}%`} />
-        </div>
-        <div>
-            <br />Schedule :<br />
-            <ul className={styles['elementList']}>{scheduleDisplay}</ul>
-        </div>
-        <div>
-            Daily Occurence (target) :<br />
-            {props.dailyOccurence}
-        </div>
-    </Box >);
+    return (
+        <React.Fragment>
+            { isModalVisible && <ModalWindow onConfirm={hideEditModal}>hello</ModalWindow>}
+            <Box className={styles['habit']} onClick={editHabit}>
+                <div>
+                    <h2>{props.title}</h2>
+                </div>
+                <div style={{ width: 100, height: 100 }}>
+                    <CircularProgressbar value={props.progress} text={`${props.progress}%`} />
+                </div>
+                <div>
+                    <br />Schedule :<br />
+                    <ul className={styles['elementList']}>{scheduleDisplay}</ul>
+                </div>
+                <div>
+                    Daily Occurence (target) :<br />
+                    {props.dailyOccurence}
+                </div>
+                <SuperButton onClick={editHabit}>Edit</SuperButton>
+            </Box >
+        </React.Fragment>);
+
 }
 
 export default Habit;
