@@ -5,6 +5,9 @@ import WeekDayPicker from '../DateRelated/WeekDayPicker'
 
 const NewHabitForm = (props) => {
 
+
+
+
     let initialTitle = '';
     let intialSchedule = {};
     let initialDate = new Date();
@@ -23,8 +26,7 @@ const NewHabitForm = (props) => {
     const [isValid, setIsValid] = useState(true);
     const [schedule, setSchedule] = useState(intialSchedule);
     const [dailyOccurence, setDailyOccurence] = useState(initialDailyOccurence);
-    const [date, setDate] = useState(initialDate);
-    const [progress, setProgress] = useState(initialProgress);
+
 
     const titleChangeHandler = (event) => {
         setEnteredTitle(event.target.value);
@@ -45,12 +47,14 @@ const NewHabitForm = (props) => {
     const submitHandler = (event) => {
         event.preventDefault(); // To prevent the page to reload
 
+        setEnteredTitle(event.target.value)
+
         const habitData = {
             "title": enteredTitle,
             "schedule": schedule,
-            "date": date,
+            "date": initialDate,
             "dailyOccurence": dailyOccurence,
-            "progress": progress
+            "progress": initialProgress
         }
 
         if (enteredTitle.trim().length === 0) {
@@ -69,7 +73,7 @@ const NewHabitForm = (props) => {
     if (!isValid) {
         className += ' invalid';
     }
-
+    // 
     return (
         <form onSubmit={submitHandler}>
             <div className={styles[className]} >
