@@ -1,0 +1,7 @@
+.filter-bar{
+    padding-left: 15px;
+}
+
+.filter-bar input{
+    border: 1px solid lightgrey;
+}
