@@ -9,7 +9,7 @@ const NewHabitForm = (props) => {
 
 
     let initialTitle = '';
-    let intialSchedule = {};
+    let intialSchedule;
     let initialDate = new Date();
     let initialDailyOccurence = 1;
     let initialProgress = 0;
@@ -64,7 +64,7 @@ const NewHabitForm = (props) => {
         props.onSaveMyItem(habitData);
         setEnteredTitle('');
         setIsValid(true);
-        setSchedule({});
+        setSchedule(null);
         setDailyOccurence(1);
 
     }

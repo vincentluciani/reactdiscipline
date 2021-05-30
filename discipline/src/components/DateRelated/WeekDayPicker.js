@@ -1,5 +1,5 @@
 import './Date.css'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './WeekDayPicker.module.css'
 
 const WeekDayPicker = (props) => {
@@ -11,7 +11,6 @@ const WeekDayPicker = (props) => {
     };
 
 
-
     const [schedule, setSchedule] = useState(initialSchedule);
 
     // React.useEffect(() => {
@@ -19,6 +18,10 @@ const WeekDayPicker = (props) => {
     //         setSchedule(props.schinitialScheduleedule);
     //     };
     // });
+
+    useEffect(() => {
+        setSchedule({});
+    }, [props.initialSchedule == null]);
 
     const mondayChangeHandler = (event) => {
         const scheduleObject = { ...schedule, "monday": event.target.checked }
