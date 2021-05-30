@@ -1,0 +1,7 @@
+.form.invalid label{
+    color:red;
+}
+
+.form label{
+    margin:7px;
+}

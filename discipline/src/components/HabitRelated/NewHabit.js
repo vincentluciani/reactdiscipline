@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Box from '../Wrappers/Box'
 import { BsFillPlusCircleFill } from 'react-icons/bs';
 import { IconContext } from "react-icons";
+import styles from './NewHabit.module.css';
 
 const NewHabit = (props) => {
 
@@ -28,7 +29,7 @@ const NewHabit = (props) => {
         { habitDisplay && <Box>< NewHabitForm onSaveMyItem={onSaveMyItemHandler} /> <div onClick={hideForm}>Hide</div></Box>}
 
         { !habitDisplay &&
-            <Box onClick={showForm}><h2>New Item</h2><IconContext.Provider value={{ color: "#3e98c7", "size": "6em" }}><div> <BsFillPlusCircleFill /></div></IconContext.Provider></Box>}
+            <Box onClick={showForm} className={styles['new-habit-box']}><h2>New Item</h2><IconContext.Provider value={{ color: "#3e98c7", "size": "6em" }}><div> <BsFillPlusCircleFill /></div></IconContext.Provider></Box>}
     </React.Fragment>
     );
 }

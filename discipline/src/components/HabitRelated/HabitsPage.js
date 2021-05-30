@@ -1,10 +1,10 @@
 
 
-import NewHabit from '../HabitRelated/NewHabit';
+import NewHabit from './NewHabit';
 import MyChart from '../Charts/Chart'
-import Habits from '../HabitRelated/Habits'
+import Habits from './Habits'
 import React, { useState } from 'react'
-import HabitChart from '../HabitRelated/HabitChart'
+import HabitChart from './HabitChart'
 import Filter from '../Filters/Filter'
 import MainPage from '../Wrappers/MainPage'
 
