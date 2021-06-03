@@ -1,5 +1,5 @@
 import './Date.css'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useReducer } from 'react'
 import styles from './WeekDayPicker.module.css'
 
 const WeekDayPicker = (props) => {
@@ -12,12 +12,6 @@ const WeekDayPicker = (props) => {
 
 
     const [schedule, setSchedule] = useState(initialSchedule);
-
-    // React.useEffect(() => {
-    //     if (props.initialSchedule) {
-    //         setSchedule(props.schinitialScheduleedule);
-    //     };
-    // });
 
     useEffect(() => {
         setSchedule({});

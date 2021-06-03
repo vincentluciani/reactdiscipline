@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import styles from './LoginForm.module.css'
 import SuperButton from '../Buttons/SuperButton'
-import WeekDayPicker from '../DateRelated/WeekDayPicker'
 
+
+const emailReducer = (state, action) => {
+    return { value: '', isValid: false };
+}
 const NewHabitForm = (props) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isValid, setIsValid] = useState(false);
 
+    // const [emailState, emailTrigger] = useReducer(emailReducer,{
+    //     value: '',
+    //     isValid: false   
+    // })
     const emailChangeHandler = (event) => {
         setEmail(event.target.value);
     }
@@ -18,8 +25,21 @@ const NewHabitForm = (props) => {
     }
 
     useEffect(() => {
-        setIsValid(email.includes('@') && password.trim().length > 6)
-    }, [email, password])
+        // Each time you enter a key, you start the counter from scratch and wait for 500ms
+        // so the validation will complete only when you stop typing during 500ms
+        const timer = setTimeout(
+            () => {
+                console.log("checking for validity");
+                setIsValid(email.includes('@') && password.trim().length > 6);
+            },
+            1000
+        );
+        return () => {
+            console.log('cleanup');
+            clearTimeout(timer)
+                ;
+        };
+    }, [email, password]);
 
     const submitHandler = (event) => {
         event.preventDefault(); // To prevent the page to reload
