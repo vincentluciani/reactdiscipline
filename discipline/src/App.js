@@ -1,14 +1,14 @@
 import './App.css';
 import ExercisePage from './components/HabitRelated/HabitsPage';
 import Header from './components/HeaderFooter/Header';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Login from './components/Authentication/Login'
+import AuthenticationContext from './components/Context/authentication-context'
+
 
 const App = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-
 
   useEffect(
     () => {
@@ -33,11 +33,13 @@ const App = () => {
   }
 
   return (
-    <div className="App">
+    <AuthenticationContext.Provider value={{
+      isLoggedIn: isLoggedIn
+    }}>
       <Header loginAction={loginHandler} logoffAction={logOffHandler} />
       {isLoggedIn && <ExercisePage />}
       {!isLoggedIn && <Login />}
-    </div>
+    </AuthenticationContext.Provider>
   );
 }
 
