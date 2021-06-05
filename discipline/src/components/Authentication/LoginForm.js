@@ -1,36 +1,87 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useReducer } from 'react'
 import styles from './LoginForm.module.css'
 import SuperButton from '../Buttons/SuperButton'
 
 
 const emailReducer = (state, action) => {
-    return { value: '', isValid: false };
+
+    const isEmailStringValid = inputString => {
+        if (!inputString.includes('@')) {
+            return false;
+        } else if (!inputString.includes('.')) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    if (action.type == 'NEW_VALUE') {
+        /* action gets what was passed as trigger in the input */
+        return { value: action.val, isValid: isEmailStringValid(action.val) }
+    } else if (action.type == 'LOOSE_FOCUS') {
+        /* state gets the value of the last state snapshot */
+        return { value: state.value, isValid: isEmailStringValid(state.value) }
+    }
+    else {
+        return { value: '', isValid: false };
+    }
+
 }
+
+const passwordReducer = (state, action) => {
+    if (action.type == 'NEW_VALUE') {
+        /* action gets what was passed as trigger in the input */
+        return { value: action.val, isValid: action.val.trim().length > 6 }
+    } else if (action.type == 'LOOSE_FOCUS') {
+        /* state gets the value of the last state snapshot */
+        return { value: state.value, isValid: state.value.trim().length > 6 }
+    }
+    else {
+        return { value: '', isValid: false };
+    }
+
+}
+
 const NewHabitForm = (props) => {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [isValid, setIsValid] = useState(false);
+    const [isLoginFormValid, setIsLoginFormValid] = useState(false);
 
-    // const [emailState, emailTrigger] = useReducer(emailReducer,{
-    //     value: '',
-    //     isValid: false   
-    // })
+    const [emailState, emailTrigger] = useReducer(emailReducer, {
+        value: '',
+        isValid: false
+    });
+
+    const [passwordState, passwordTrigger] = useReducer(passwordReducer, {
+        value: '',
+        isValid: false
+    });
+
+
     const emailChangeHandler = (event) => {
-        setEmail(event.target.value);
+        emailTrigger({ type: 'NEW_VALUE', val: event.target.value });
     }
 
-    const passwordChangeHandler = (event) => {
-        setPassword(event.target.value);
+    const emailValidateWhenLoosingFocus = () => {
+        emailTrigger({ type: 'LOOSE_FOCUS' });
     }
+
+    const passwordChangeHandler = event => {
+        passwordTrigger({ type: 'NEW_VALUE', val: event.target.value });
+    }
+
+    const passwordValidateWhenLoosingFocus = () => {
+        passwordTrigger({ type: 'LOOSE_FOCUS' });
+    }
+
+    const { isValid: emailIsValid } = emailState;
+    const { isValid: passwordIsValid } = passwordState;
 
     useEffect(() => {
-        // Each time you enter a key, you start the counter from scratch and wait for 500ms
-        // so the validation will complete only when you stop typing during 500ms
+        /* Each time you enter a key, you start the counter from scratch and wait for 500ms
+        so the validation will complete only when you stop typing during 500ms */
         const timer = setTimeout(
             () => {
                 console.log("checking for validity");
-                setIsValid(email.includes('@') && password.trim().length > 6);
+                setIsLoginFormValid(emailIsValid && passwordIsValid);
             },
             1000
         );
@@ -39,17 +90,17 @@ const NewHabitForm = (props) => {
             clearTimeout(timer)
                 ;
         };
-    }, [email, password]);
+    }, [emailIsValid, passwordIsValid]);
 
     const submitHandler = (event) => {
         event.preventDefault(); // To prevent the page to reload
-        setEmail('');
-        setPassword('');
+        emailTrigger({ type: 'RESET' });
+        passwordTrigger({ type: 'RESET' });
 
     }
 
     let className = 'form';
-    if (!isValid) {
+    if (!isLoginFormValid) {
         className += ' invalid';
     }
     // 
@@ -57,20 +108,31 @@ const NewHabitForm = (props) => {
         <form onSubmit={submitHandler}>
             <div className={styles[className]} >
                 <h2>Login</h2>
-                <label htmlFor="email">Email :</label><br />
-                <input id="email" type="text" value={email} onChange={emailChangeHandler} />
-                <br /><br />
-                <label htmlFor="password">Password :</label><br />
-                <input id="password" type="text" value={password} onChange={passwordChangeHandler} />
-                <br /><br />
+                <div className={`${emailState.isValid === true ? styles['valid'] : ''}`}>
+                    <label htmlFor="email">Email :</label><br />
+                    <input
+                        id="email"
+                        type="text"
+                        value={emailState.value}
+                        onChange={emailChangeHandler}
+                        onBlur={emailValidateWhenLoosingFocus} />
+                </div>
+                <br />
+                <div className={`${passwordState.isValid === true ? styles['valid'] : ''}`}>
+                    <label htmlFor="password">Password :</label><br />
+                    <input
+                        id="password"
+                        type="text"
+                        value={passwordState.value}
+                        onChange={passwordChangeHandler}
+                        onBlur={passwordValidateWhenLoosingFocus} />
+                </div>
+                <br />
             </div>
             <div>
-                <SuperButton type="submit" invalid={!isValid}>Submit</SuperButton>
+                <SuperButton type="submit" invalid={!isLoginFormValid}>Submit</SuperButton>
             </div>
         </form>
     )
 }
-
-// <label htmlFor="date">Date</label>
-//                 <input id="date" type="date" value={enteredDate} onChange={dateChangeHandler} />
 export default NewHabitForm
