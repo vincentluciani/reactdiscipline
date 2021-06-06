@@ -7,16 +7,9 @@ const Navigation = (props) => {
 
     const context = useContext(AuthenticationContext);
 
-    const loginButtonClick = () => {
-        props.loginAction(true);
-    }
-    const loginOffClick = () => {
-        props.logoffAction(true);
-    }
-
     return <React.Fragment>
-        {!context.isLoggedIn && (<SuperButton onClick={loginButtonClick}>Login</SuperButton>)}
-        {context.isLoggedIn && (<SuperButton onClick={loginOffClick}>Log off</SuperButton>)}
+        {!context.isLoggedIn && (<SuperButton onClick={context.onLogin}>Login</SuperButton>)}
+        {context.isLoggedIn && (<SuperButton onClick={context.onLogout}>Log off</SuperButton>)}
     </React.Fragment>
 }
 

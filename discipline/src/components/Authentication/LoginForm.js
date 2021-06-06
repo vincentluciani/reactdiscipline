@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useReducer } from 'react'
+import React, { useEffect, useState, useReducer, useContext } from 'react'
 import styles from './LoginForm.module.css'
 import SuperButton from '../Buttons/SuperButton'
+import AuthenticationContext from '../Context/authentication-context'
 
 
 const emailReducer = (state, action) => {
@@ -56,6 +57,8 @@ const NewHabitForm = (props) => {
     });
 
 
+    const context = useContext(AuthenticationContext);
+
     const emailChangeHandler = (event) => {
         emailTrigger({ type: 'NEW_VALUE', val: event.target.value });
     }
@@ -96,7 +99,7 @@ const NewHabitForm = (props) => {
         event.preventDefault(); // To prevent the page to reload
         emailTrigger({ type: 'RESET' });
         passwordTrigger({ type: 'RESET' });
-
+        context.onLogin(emailState.value, passwordState.value);
     }
 
     let className = 'form';

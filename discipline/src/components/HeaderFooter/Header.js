@@ -3,10 +3,10 @@ import Navigation from './Navigation'
 import styles from './Header.module.css'
 //import Logo from './Logo'
 
-const Header = (props) => {
+const Header = () => {
 
     return <div className={styles['header']}>
-        <Navigation loginAction={props.loginAction} logoffAction={props.logoffAction} />
+        <Navigation />
     </div >
 }
 //<Logo />
