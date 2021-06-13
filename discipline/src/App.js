@@ -1,5 +1,5 @@
 import './App.css';
-import ExercisePage from './components/HabitRelated/HabitsPage';
+import HabitsPage from './components/HabitRelated/HabitsPage';
 import Header from './components/HeaderFooter/Header';
 import React, { useContext } from 'react';
 import Login from './components/Authentication/Login'
@@ -13,7 +13,7 @@ const App = () => {
   return (
     <React.Fragment>
       <Header />
-      {context.isLoggedIn && <ExercisePage />}
+      {context.isLoggedIn && <HabitsPage />}
       {!context.isLoggedIn && <Login />}
     </React.Fragment>
   );

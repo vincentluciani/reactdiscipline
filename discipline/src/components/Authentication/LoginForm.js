@@ -2,7 +2,7 @@ import React, { useEffect, useState, useReducer, useContext } from 'react'
 import styles from './LoginForm.module.css'
 import SuperButton from '../Buttons/SuperButton'
 import AuthenticationContext from '../Context/authentication-context'
-
+import Input from '../Forms/Input'
 
 const emailReducer = (state, action) => {
 
@@ -111,25 +111,21 @@ const NewHabitForm = (props) => {
         <form onSubmit={submitHandler}>
             <div className={styles[className]} >
                 <h2>Login</h2>
-                <div className={`${emailState.isValid === true ? styles['valid'] : ''}`}>
-                    <label htmlFor="email">Email :</label><br />
-                    <input
-                        id="email"
-                        type="text"
-                        value={emailState.value}
-                        onChange={emailChangeHandler}
-                        onBlur={emailValidateWhenLoosingFocus} />
-                </div>
+                <Input isValid={emailState.isValid}
+                    label="E-mail"
+                    id="email"
+                    type="text"
+                    value={emailState.value}
+                    onChange={emailChangeHandler}
+                    onBlur={emailValidateWhenLoosingFocus} />
                 <br />
-                <div className={`${passwordState.isValid === true ? styles['valid'] : ''}`}>
-                    <label htmlFor="password">Password :</label><br />
-                    <input
-                        id="password"
-                        type="text"
-                        value={passwordState.value}
-                        onChange={passwordChangeHandler}
-                        onBlur={passwordValidateWhenLoosingFocus} />
-                </div>
+                <Input isValid={passwordState.isValid}
+                    label="Password"
+                    id="password"
+                    type="password"
+                    value={passwordState.value}
+                    onChange={passwordChangeHandler}
+                    onBlur={passwordValidateWhenLoosingFocus} />
                 <br />
             </div>
             <div>

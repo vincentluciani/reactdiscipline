@@ -1,0 +1,13 @@
+.form.invalid label {
+    color:lightgray;
+}
+
+.valid label {
+    color: green;
+}
+
+/*
+.form label{
+    margin:7px;
+}
+*/
